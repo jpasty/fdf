@@ -1,7 +1,7 @@
 #include "controls.h"
 #include "fdf.h"
 
-void	zoom(int key, t_mlx *mlx, t_map *map)
+void	zoom(int key, t_mlx *mlx)
 {
 	if (key == NUM_PAD_PLUS ||
 		key == MAIN_PAD_PLUS ||
@@ -13,10 +13,10 @@ void	zoom(int key, t_mlx *mlx, t_map *map)
 		mlx->cam->zoom--;
 	if (mlx->cam->zoom < 1)
 		mlx->cam->zoom = 1;
-	draw(map, mlx);
+	draw(mlx->map, mlx);
 }
 
-void	move(int key, t_mlx *mlx, t_map *map)
+void	move(int key, t_mlx *mlx)
 {
 	if (key == ARROW_LEFT)
 		mlx->cam->x_offset -= 10;
@@ -26,10 +26,10 @@ void	move(int key, t_mlx *mlx, t_map *map)
 		mlx->cam->y_offset -= 10;
 	else
 		mlx->cam->y_offset += 10;
-	draw(map, mlx);
+	draw(mlx->map, mlx);
 }
 
-void	rotate(int key, t_mlx *mlx, t_map *map)
+void	rotate(int key, t_mlx *mlx)
 {
 	if (key == NUM_PAD_2 || key == MAIN_PAD_2)
 		mlx->cam->alpha += 0.05;
@@ -45,10 +45,10 @@ void	rotate(int key, t_mlx *mlx, t_map *map)
 	else if (key == NUM_PAD_7 || key == MAIN_PAD_7
 			 || key == NUM_PAD_9 || key == MAIN_PAD_9)
 		mlx->cam->gamma -= 0.05;
-	draw(map, mlx);
+	draw(mlx->map, mlx);
 }
 
-void	flatten(int key, t_mlx *mlx, t_map *map)
+void	flatten(int key, t_mlx *mlx)
 {
 	if (key == MAIN_PAD_LESS)
 		mlx->cam->z_divisor -= 0.1;
@@ -58,10 +58,10 @@ void	flatten(int key, t_mlx *mlx, t_map *map)
 		mlx->cam->z_divisor = 0.1;
 	else if (mlx->cam->z_divisor > 10)
 		mlx->cam->z_divisor = 10;
-	draw(map, mlx);
+	draw(mlx->map, mlx);
 }
 
-void	change_projection(int key, t_mlx *mlx, t_map *map)
+void	change_projection(int key, t_mlx *mlx)
 {
 	mlx->cam->alpha = 0;
 	mlx->cam->beta = 0;
@@ -70,5 +70,5 @@ void	change_projection(int key, t_mlx *mlx, t_map *map)
 		mlx->cam->projection = 0;
 	else if (key == MAIN_PAD_P)
 		mlx->cam->projection = 1;
-	draw(map, mlx);
+	draw(mlx->map, mlx);
 }
