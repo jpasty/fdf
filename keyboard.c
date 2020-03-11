@@ -35,70 +35,62 @@ static int			key_press(int key, void *param)
 			 || key == NUM_PAD_9 || key == MAIN_PAD_9)
 		rotate(key, mlx);
 	else if (key == MAIN_PAD_LESS || key == MAIN_PAD_MORE)
-		flatten(key, mlx);
+		altitude(key, mlx);
 	else if (key == MAIN_PAD_P || key == MAIN_PAD_I)
 		change_projection(key, mlx);
 	return (0);
 }
-//
-//static int			mouse_press(int button, int x, int y, void *param)
-//{
-//	t_fdf	*fdf;
-//
-//	(void)x;
-//	(void)y;
-//	fdf = (t_fdf *)param;
-//	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
-//		zoom(button, fdf);
-//	else if (button == MOUSE_LEFT_BUTTON)
-//		fdf->mouse->is_pressed = true;
-//	return (0);
-//}
-//
-///*
-//** Handle mouse release
-//*/
-//
-//static int			mouse_release(int button, int x, int y, void *param)
-//{
-//	t_fdf	*fdf;
-//
-//	(void)x;
-//	(void)y;
-//	(void)button;
-//	fdf = (t_fdf *)param;
-//	fdf->mouse->is_pressed = false;
-//	return (0);
-//}
-//
-///*
-//** Handle mouse move
-//*/
-//
-//static int			mouse_move(int x, int y, void *param)
-//{
-//	t_fdf	*fdf;
-//
-//	fdf = (t_fdf *)param;
-//	fdf->mouse->previous_x = fdf->mouse->x;
-//	fdf->mouse->previous_y = fdf->mouse->y;
-//	fdf->mouse->x = x;
-//	fdf->mouse->y = y;
-//	if (fdf->mouse->is_pressed)
-//	{
-//		fdf->camera->beta += (x - fdf->mouse->previous_x) * 0.002;
-//		fdf->camera->alpha += (y - fdf->mouse->previous_y) * 0.002;
-//		draw(fdf->map, fdf);
-//	}
-//	return (0);
-//}
+
+int			mouse_press(int button, int x, int y, void *param)
+{
+	t_mlx	*mlx;
+
+	(void)x;
+	(void)y;
+	mlx = (t_mlx *)param;
+	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
+		zoom(button, mlx);
+	else if (button == MOUSE_LEFT_BUTTON)
+		mlx->mouse->is_pressed = 1;
+	return (0);
+}
+
+int			mouse_release(int button, int x, int y, void *param)
+{
+	t_mlx *mlx;
+
+	(void) x;
+	(void) y;
+	(void) button;
+	mlx = (t_mlx *) param;
+	mlx->mouse->is_pressed = 0;
+	return (0);
+}
+
+int			mouse_move(int x, int y, void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = (t_mlx *)param;
+	mlx->mouse->previous_x = mlx->mouse->x;
+	mlx->mouse->previous_y = mlx->mouse->y;
+	mlx->mouse->x = x;
+	mlx->mouse->y = y;
+	if (mlx->mouse->is_pressed)
+	{
+		mlx->cam->beta += (x - mlx->mouse->previous_x) * 0.002;
+		mlx->cam->alpha += (y - mlx->mouse->previous_y) * 0.002;
+		draw(mlx->map, mlx);
+	}
+	return (0);
+}
 
 void	set_hook(t_mlx *mlx, t_map *map)
 {
 	mlx->map = map;
 	mlx_hook(mlx->win_ptr, 2, 0, key_press, mlx);
 //	mlx_hook(mlx->win_ptr, 17, 0, close, mlx);
-//	mlx_hook(mlx->win_ptr, 4, 0, mouse_press, mlx);
-//	mlx_hook(mlx->win_ptr, 5, 0, mouse_release, mlx);
-//	mlx_hook(mlx->win_ptr, 6, 0, mouse_move, mlx);
+	mlx_hook(mlx->win_ptr, 4, 0, mouse_press, mlx);
+	mlx_hook(mlx->win_ptr, 5, 0, mouse_release, mlx);
+	mlx_hook(mlx->win_ptr, 6, 0, mouse_move, mlx);
 }

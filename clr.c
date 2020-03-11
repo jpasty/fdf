@@ -1,19 +1,20 @@
 #include "fdf.h"
+
 int 		set_default_clr(int z, t_map *map)
 {
 	double percent;
 
 	percent = ratio(map->z_min, map->z_max, z);
 	if (percent < 0.2)
-		return (COLOR_DISCO);
+		return (COLOR_SKY);
 	else if (percent < 0.4)
-		return (COLOR_BRICK_RED);
+		return (COLOR_OCEAN);
 	else if (percent < 0.6)
-		return (COLOR_FLAMINGO);
+		return (COLOR_YELLOW);
 	else if (percent < 0.8)
-		return (COLOR_JAFFA);
+		return (COLOR_GREEN);
 	else
-		return (COLOR_SAFFRON);
+		return (COLOR_ORANGE);
 }
 
 int	get_light(int start, int end, double percentage)

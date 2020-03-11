@@ -9,23 +9,22 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "controls.h"
-#include "stdio.h"
+# include "stdio.h"
 
-#define  DEF_COLOR	"0xFECA99"
 # define HEIGHT			1080
 # define WIDTH			1920
 # define MENU_WIDTH		250
 
-
-# define TEXT_COLOR			0xEAEAEA
+# define HEAD_COLOR			0x35bbca
+# define TEXT_COLOR			0xffb836
 # define BACKGROUND			0x282a36
 # define MENU_BACKGROUND	0x262626
 
-# define COLOR_DISCO		0x9A1F6A
-# define COLOR_BRICK_RED	0xC2294E
-# define COLOR_FLAMINGO		0xEC4B27
-# define COLOR_JAFFA		0xEF8633
-# define COLOR_SAFFRON		0xF3AF3D
+# define COLOR_SKY		0x35bbca
+# define COLOR_OCEAN	0x0191b4
+# define COLOR_YELLOW	0xf8d90f
+# define COLOR_GREEN	0xd3dd18
+# define COLOR_ORANGE	0xfe7a15
 
 typedef struct		s_batisa
 {
@@ -42,7 +41,6 @@ typedef struct		s_map
 	int				*z_arr;
 	int 			z_max;
 	int				z_min;
-	int 			z_range;
 }					t_map;
 
 typedef struct 		s_cam
@@ -57,6 +55,15 @@ typedef struct 		s_cam
 	int				y_offset;
 }					t_cam;
 
+typedef struct		s_mouse
+{
+	int				is_pressed;
+	int				x;
+	int				y;
+	int				previous_x;
+	int				previous_y;
+}					t_mouse;
+
 typedef struct 		s_mlx
 {
 	void			*mlx_ptr;
@@ -68,6 +75,7 @@ typedef struct 		s_mlx
 	int				endian;
 	t_cam			*cam;
 	t_map			*map;
+	t_mouse			*mouse;
 }					t_mlx;
 
 typedef struct 		s_draw
@@ -90,12 +98,6 @@ typedef struct		s_point
 	int				clr;
 }					t_point;
 
-typedef struct		s_event
-{
-
-}					t_event;
-
-
 void				print_menu(t_mlx *mlx);
 void				set_hook(t_mlx *mlx, t_map *map);
 int					read_input(int fd,t_map *map, t_batisa **coord);
@@ -115,7 +117,7 @@ t_point 			projection(t_point p, t_mlx *mlx, t_map *map);
 void				zoom(int key, t_mlx *mlx);
 void				move(int key, t_mlx *mlx);
 void				rotate(int key, t_mlx *mlx);
-void				flatten(int key, t_mlx *mlx);
+void				altitude(int key, t_mlx *mlx);
 void				change_projection(int key, t_mlx *mlx);
 double 				ratio(int z_min, int z_max, int z);
 int 				set_default_clr(int z, t_map *map);

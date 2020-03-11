@@ -47,6 +47,8 @@ t_mlx		*mlx_data(t_map *map)
 			&(mlx->size_line), &(mlx->endian));
 	if (!mlx->data_ptr)
 		return (NULL);
+	if (!(mlx->mouse = (t_mouse *)ft_memalloc(sizeof(t_mouse))))
+		return (NULL);
 	mlx->cam = cam_init(map);
 	return (mlx);
 }

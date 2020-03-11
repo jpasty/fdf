@@ -1,4 +1,3 @@
-#include "controls.h"
 #include "fdf.h"
 
 void	zoom(int key, t_mlx *mlx)
@@ -48,7 +47,7 @@ void	rotate(int key, t_mlx *mlx)
 	draw(mlx->map, mlx);
 }
 
-void	flatten(int key, t_mlx *mlx)
+void	altitude(int key, t_mlx *mlx)
 {
 	if (key == MAIN_PAD_LESS)
 		mlx->cam->z_divisor -= 0.1;
