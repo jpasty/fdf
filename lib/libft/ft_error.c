@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 void		ft_error_fd(int fd, char *mes, int code)
 {
 	write(fd, mes, ft_strlen(mes));
+	write(fd, "\n", 1);
 	exit(code);
 }
 
