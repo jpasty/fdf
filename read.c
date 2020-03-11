@@ -33,9 +33,8 @@ void			coord_to_arr(t_batisa **coord, t_map *map)
 
 	i = map->width * map->height - 1;
 	arr_size = map->width * map->height * sizeof(int);
-	if (!(map->z_arr = (int *)ft_memalloc( arr_size))
-			|| !(map->clr_arr = (int *)ft_memalloc(arr_size)))
-		return ;
+	map->z_arr = (int *)ft_memalloc(arr_size);
+	map->clr_arr = (int *)ft_memalloc(arr_size);
 	while ((curr = extract_coord(coord)) && i >= 0)
 	{
 		map->z_arr[i] = curr->z;
@@ -55,7 +54,7 @@ static t_batisa	*get_new_coord(char *s)
 	char 		**div;
 
 	if (!(new_coord = (t_batisa *)malloc(sizeof(t_batisa))))
-		return (NULL);
+		ft_errno(ENOMEM, "t_batisa allocation error");
 	div = ft_strsplit(s, ',');
 	if (!ft_is_num(div[0], 10))
 		return (0);
@@ -93,11 +92,14 @@ int			read_input(int fd,t_map *map, t_batisa **coord)
 	while ((res = get_next_line(fd, &line)) == 1)
 	{
 		if (!(split = ft_strsplit(line, ' ')))
-			return (0);
-		check_input(split, map, coord);
+			ft_errno(0, "Read file error");
+		if (!check_input(split, map, coord))
+			ft_errno(0, "Wrong map");
 		map->height++;
 		free(split);
 		free(line);
 	}
-	return (1);
+	if (res == -1)
+		ft_errno(0, "Read file error");
+	return (res);
 }
