@@ -6,7 +6,7 @@
 /*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 18:45:48 by jpasty            #+#    #+#             */
-/*   Updated: 2020/03/11 21:31:42 by cshinoha         ###   ########.fr       */
+/*   Updated: 2020/03/11 21:49:54 by cshinoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/errno.h>
+# include "stdio.h"
 
 typedef struct		s_list
 {

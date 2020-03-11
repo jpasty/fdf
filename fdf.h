@@ -9,7 +9,6 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "controls.h"
-# include "stdio.h"
 
 #define  DEF_COLOR	"0xFECA99"
 # define HEIGHT			1080
