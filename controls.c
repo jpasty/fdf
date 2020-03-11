@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:28:28 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:28:30 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	zoom(int key, t_mlx *mlx)
 {
 	if (key == NUM_PAD_PLUS ||
-		key == MAIN_PAD_PLUS ||
-		key == MOUSE_SCROLL_UP)
+			key == MAIN_PAD_PLUS ||
+			key == MOUSE_SCROLL_UP)
 		mlx->cam->zoom++;
 	else if (key == NUM_PAD_MINUS ||
-			 key == MAIN_PAD_MINUS ||
-			 key == MOUSE_SCROLL_DOWN)
+			key == MAIN_PAD_MINUS ||
+			key == MOUSE_SCROLL_DOWN)
 		mlx->cam->zoom--;
 	if (mlx->cam->zoom < 1)
 		mlx->cam->zoom = 1;
@@ -39,10 +51,10 @@ void	rotate(int key, t_mlx *mlx)
 	else if (key == NUM_PAD_6 || key == MAIN_PAD_6)
 		mlx->cam->beta += 0.05;
 	else if (key == NUM_PAD_1 || key == MAIN_PAD_1
-			 || key == NUM_PAD_3 || key == MAIN_PAD_3)
+			|| key == NUM_PAD_3 || key == MAIN_PAD_3)
 		mlx->cam->gamma += 0.05;
 	else if (key == NUM_PAD_7 || key == MAIN_PAD_7
-			 || key == NUM_PAD_9 || key == MAIN_PAD_9)
+			|| key == NUM_PAD_9 || key == MAIN_PAD_9)
 		mlx->cam->gamma -= 0.05;
 	draw(mlx->map, mlx);
 }

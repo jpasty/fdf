@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:29:03 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:29:05 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-double 		ratio(int start, int end, int curr)
+double		ratio(int start, int end, int curr)
 {
 	double	position;
 	double	length;
 
 	position = curr - start;
 	length = end - start;
-
 	return (length == 0) ? 1.0 : (position / length);
 }
 
@@ -22,14 +33,13 @@ t_point		get_point(int x, int y, t_map *map)
 	new.z = map->z_arr[i];
 	new.clr = (map->clr_arr[i] == -1) ? set_default_clr(new.z, map) :
 				map->clr_arr[i];
-	return  (new);
-
+	return (new);
 }
 
 static void	draw_background(t_mlx *mlx)
 {
-	int	*image;
-	int	i;
+	int		*image;
+	int		i;
 
 	ft_bzero(mlx->data_ptr, WIDTH * HEIGHT * (mlx->bits_per_pixel / 8));
 	image = (int *)(mlx->data_ptr);
@@ -44,7 +54,7 @@ static void	draw_background(t_mlx *mlx)
 void		draw(t_map *map, t_mlx *mlx)
 {
 	int		x;
-	int 	y;
+	int		y;
 
 	draw_background(mlx);
 	y = 0;
@@ -58,7 +68,7 @@ void		draw(t_map *map, t_mlx *mlx)
 						projection(get_point(x + 1, y, map), mlx, map), mlx);
 			if (y != map->height - 1)
 				brsnhm(projection(get_point(x, y, map), mlx, map),
-					   projection(get_point(x, y + 1, map), mlx, map), mlx);
+						projection(get_point(x, y + 1, map), mlx, map), mlx);
 			x++;
 		}
 		y++;

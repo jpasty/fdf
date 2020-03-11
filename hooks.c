@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static int			key_press(int key, void *param)
+static int	key_press(int key, void *param)
 {
 	t_mlx	*mlx;
 
@@ -23,16 +23,16 @@ static int			key_press(int key, void *param)
 		|| key == NUM_PAD_MINUS || key == MAIN_PAD_MINUS)
 		zoom(key, mlx);
 	else if (key == ARROW_LEFT || key == ARROW_RIGHT
-			 || key == ARROW_UP || key == ARROW_DOWN)
+			|| key == ARROW_UP || key == ARROW_DOWN)
 		move(key, mlx);
 	else if (key == NUM_PAD_1 || key == MAIN_PAD_1
-			 || key == NUM_PAD_2 || key == MAIN_PAD_2
-			 || key == NUM_PAD_3 || key == MAIN_PAD_3
-			 || key == NUM_PAD_4 || key == MAIN_PAD_4
-			 || key == NUM_PAD_6 || key == MAIN_PAD_6
-			 || key == NUM_PAD_7 || key == MAIN_PAD_7
-			 || key == NUM_PAD_8 || key == MAIN_PAD_8
-			 || key == NUM_PAD_9 || key == MAIN_PAD_9)
+			|| key == NUM_PAD_2 || key == MAIN_PAD_2
+			|| key == NUM_PAD_3 || key == MAIN_PAD_3
+			|| key == NUM_PAD_4 || key == MAIN_PAD_4
+			|| key == NUM_PAD_6 || key == MAIN_PAD_6
+			|| key == NUM_PAD_7 || key == MAIN_PAD_7
+			|| key == NUM_PAD_8 || key == MAIN_PAD_8
+			|| key == NUM_PAD_9 || key == MAIN_PAD_9)
 		rotate(key, mlx);
 	else if (key == MAIN_PAD_LESS || key == MAIN_PAD_MORE)
 		altitude(key, mlx);
@@ -57,12 +57,12 @@ int			mouse_press(int button, int x, int y, void *param)
 
 int			mouse_release(int button, int x, int y, void *param)
 {
-	t_mlx *mlx;
+	t_mlx	*mlx;
 
-	(void) x;
-	(void) y;
-	(void) button;
-	mlx = (t_mlx *) param;
+	(void)x;
+	(void)y;
+	(void)button;
+	mlx = (t_mlx *)param;
 	mlx->mouse->is_pressed = 0;
 	return (0);
 }
@@ -85,7 +85,7 @@ int			mouse_move(int x, int y, void *param)
 	return (0);
 }
 
-void	set_hook(t_mlx *mlx, t_map *map)
+void		set_hook(t_mlx *mlx, t_map *map)
 {
 	mlx->map = map;
 	mlx_hook(mlx->win_ptr, 2, 0, key_press, mlx);

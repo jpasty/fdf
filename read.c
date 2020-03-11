@@ -1,35 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:30:42 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:30:55 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-
-t_batisa		*extract_coord(t_batisa **coord)
-{
-	t_batisa	*head;
-
-	head = NULL;
-	if (coord && *coord)
-	{
-		head = *coord;
-		*coord = (*coord)->next;
-	}
-	return (head);
-}
-
-void			add_new_coord(t_batisa **lst_coord, t_batisa *new_coord)
-{
-	if (lst_coord)
-	{
-		if (new_coord)
-		{
-			new_coord->next = *lst_coord;
-			*lst_coord = new_coord;
-		}
-	}
-}
 
 void			coord_to_arr(t_batisa **coord, t_map *map)
 {
 	t_batisa	*curr;
-	long 		i;
-	size_t 		arr_size;
+	long		i;
+	size_t		arr_size;
 
 	i = map->width * map->height - 1;
 	arr_size = map->width * map->height * sizeof(int);
@@ -50,8 +37,8 @@ void			coord_to_arr(t_batisa **coord, t_map *map)
 
 static t_batisa	*get_new_coord(char *s)
 {
-	t_batisa 	*new_coord;
-	char 		**div;
+	t_batisa	*new_coord;
+	char		**div;
 
 	if (!(new_coord = (t_batisa *)malloc(sizeof(t_batisa))))
 		ft_errno(ENOMEM, "t_batisa allocation error");
@@ -59,14 +46,14 @@ static t_batisa	*get_new_coord(char *s)
 	if (!ft_is_num(div[0], 10))
 		return (0);
 	new_coord->z = ft_atoi(div[0]);
-	new_coord->clr =  div[1] ? ft_atoi_base(div[1], 16) : -1;
+	new_coord->clr = div[1] ? ft_atoi_base(div[1], 16) : -1;
 	new_coord->next = NULL;
 	return (new_coord);
 }
 
-static int 		check_input(char **split, t_map *map, t_batisa **coord)
+static int		check_input(char **split, t_map *map, t_batisa **coord)
 {
-	int 		width;
+	int			width;
 	t_batisa	*new_coord;
 
 	width = 0;
@@ -80,14 +67,13 @@ static int 		check_input(char **split, t_map *map, t_batisa **coord)
 	if (width != map->width)
 		return (0);
 	return (1);
-
 }
 
-int			read_input(int fd,t_map *map, t_batisa **coord)
+int				read_input(int fd, t_map *map, t_batisa **coord)
 {
-	char *line;
-	char **split;
-	int res;
+	char		*line;
+	char		**split;
+	int			res;
 
 	while ((res = get_next_line(fd, &line)) == 1)
 	{

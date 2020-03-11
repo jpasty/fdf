@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   brsnhm.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:28:04 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:28:06 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void	pixel_put(t_mlx *mlx, int x, int y, int color)
@@ -15,14 +27,14 @@ static void	pixel_put(t_mlx *mlx, int x, int y, int color)
 
 static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 {
-	int 	y;
+	int		y;
 	t_point	strt;
 
 	ft_memcpy(&strt, &p1, sizeof(t_point));
 	y = p1.y;
 	line.delta = abs(line.rise) * 2;
 	line.threshold = abs(line.run);
-	line.thresholdInc = abs(line.run) * 2;
+	line.thresholdinc = abs(line.run) * 2;
 	if (p2.x < p1.x)
 	{
 		y = p2.y;
@@ -30,12 +42,12 @@ static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 	}
 	while (p1.x != p2.x + 1)
 	{
-		pixel_put(mlx, p1.x, y, set_clr(y, p1.x, p1, strt, p2));
+		pixel_put(mlx, p1.x, y, set_clr((t_point){p1.x, y, p1.clr}, strt, p2));
 		line.offset += line.delta;
 		if (line.offset >= line.threshold)
 		{
 			y += line.adjust;
-			line.threshold += line.thresholdInc;
+			line.threshold += line.thresholdinc;
 		}
 		p1.x++;
 	}
@@ -43,14 +55,14 @@ static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 
 static void	rise_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 {
-	int 	x;
+	int		x;
 	t_point	strt;
 
 	ft_memcpy(&strt, &p1, sizeof(t_point));
 	x = p1.x;
 	line.delta = abs(line.run) * 2;
 	line.threshold = abs(line.rise);
-	line.thresholdInc = abs(line.rise) * 2;
+	line.thresholdinc = abs(line.rise) * 2;
 	if (p2.y < p1.y)
 	{
 		x = p2.x;
@@ -58,12 +70,12 @@ static void	rise_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 	}
 	while (p1.y != p2.y + 1)
 	{
-		pixel_put(mlx, x, p1.y, set_clr(p1.y, x, p1, strt, p2)); //разберись с градиентом
+		pixel_put(mlx, x, p1.y, set_clr((t_point){x, p1.y, p1.clr}, strt, p2));
 		line.offset += line.delta;
 		if (line.offset >= line.threshold)
 		{
 			x += line.adjust;
-			line.threshold += line.thresholdInc;
+			line.threshold += line.thresholdinc;
 		}
 		p1.y++;
 	}
@@ -81,10 +93,11 @@ void		brsnhm(t_point p1, t_point p2, t_mlx *mlx)
 		if (p2.y < p1.y)
 			ft_swap(&p1.y, &p2.y);
 		while (p1.y != p2.y + 1)
-			pixel_put(mlx, p1.x, p1.y, set_clr(p1.y++, p1.x, p1, strt, p2));
+			pixel_put(mlx, p1.x, p1.y, set_clr((t_point){p1.x, p1.y++, p1.clr},
+					strt, p2));
 	}
-		if (line.m >= -1 && line.m <=1)
-			run_is_gather(line, p1, p2, mlx);
-		else
-			rise_is_gather(line, p1, p2, mlx);
+	if (line.m >= -1 && line.m <= 1)
+		run_is_gather(line, p1, p2, mlx);
+	else
+		rise_is_gather(line, p1, p2, mlx);
 }

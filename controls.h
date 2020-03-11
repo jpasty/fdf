@@ -1,12 +1,21 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:28:48 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:28:55 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FDF_CONTROLS_H
-#define FDF_CONTROLS_H
+# define FDF_CONTROLS_H
 
 # define MOUSE_LEFT_BUTTON	1
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
-
 
 # define ARROW_UP			126
 # define ARROW_DOWN			125

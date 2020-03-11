@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   coord_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 20:51:04 by jpasty            #+#    #+#             */
-/*   Updated: 2019/04/23 20:59:37 by jpasty           ###   ########.fr       */
+/*   Created: 2020/03/11 23:20:36 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 23:20:38 by jpasty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_putendl_fd(const char *s, int fd)
+t_batisa		*extract_coord(t_batisa **coord)
 {
-	if (s && fd >= 0)
+	t_batisa	*head;
+
+	head = NULL;
+	if (coord && *coord)
 	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
+		head = *coord;
+		*coord = (*coord)->next;
+	}
+	return (head);
+}
+
+void			add_new_coord(t_batisa **lst_coord, t_batisa *new_coord)
+{
+	if (lst_coord)
+	{
+		if (new_coord)
+		{
+			new_coord->next = *lst_coord;
+			*lst_coord = new_coord;
+		}
 	}
 }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   assist.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:27:56 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:27:59 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-int 			ft_is_digit(char s, int base)
+int					ft_is_digit(char s, int base)
 {
-	char		*digit;
-	int			i;
+	char			*digit;
+	int				i;
 
 	digit = "0123456789ABCDEF";
 	i = 0;
@@ -18,15 +30,15 @@ int 			ft_is_digit(char s, int base)
 	return (-1);
 }
 
-int 			ft_is_space(int c)
+int					ft_is_space(int c)
 {
 	if (c == ' ' || c == '\t' ||
 		c == '\r' || c == '\f' || c == '\v')
 		return (1);
-	return  (0);
+	return (0);
 }
 
-int	 				ft_atoi_base(char *s, int base)
+int					ft_atoi_base(char *s, int base)
 {
 	unsigned long	res;
 	int				sign;
@@ -55,9 +67,10 @@ int	 				ft_atoi_base(char *s, int base)
 	return ((int)(res * sign));
 }
 
-int 				ft_is_num(char *s, int base)
+int					ft_is_num(char *s, int base)
 {
 	int				i;
+
 	i = 0;
 	while (ft_is_space(s[i]))
 		i++;
@@ -67,5 +80,5 @@ int 				ft_is_num(char *s, int base)
 		i++;
 	while (s[i] && (ft_is_digit(s[i], base) >= 0))
 		i++;
-	return s[i] ? 0 : 1;
+	return (s[i] ? 0 : 1);
 }

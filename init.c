@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 22:30:11 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/11 22:30:17 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-int		closed(void *param)
+int			closed(void *param)
 {
 	(void)param;
 	exit(0);
 }
 
-t_map 		*map_init()
+t_map		*map_init(void)
 {
-	t_map 	*map;
+	t_map	*map;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		ft_errno(ENOMEM, "t_map allocation error");
@@ -25,7 +37,7 @@ t_cam		*cam_init(t_map *map)
 
 	cam = (t_cam *)ft_memalloc(sizeof(t_cam));
 	cam->zoom = ft_min((WIDTH - MENU_WIDTH) / map->width / 2,
-					   HEIGHT / map->height / 2 );
+			HEIGHT / map->height / 2);
 	cam->alpha = 0;
 	cam->beta = 0;
 	cam->gamma = 0;
@@ -62,4 +74,3 @@ void		line_init(t_draw *line, t_point *p1, t_point *p2)
 	line->adjust = line->m >= 0 ? 1 : -1;
 	line->offset = 0;
 }
-
