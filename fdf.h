@@ -8,6 +8,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "get_next_line.h"
+# include "controls.h"
+#include "stdio.h"
 
 #define  DEF_COLOR	"0xFECA99"
 # define HEIGHT			1080
@@ -94,6 +96,8 @@ typedef struct		s_event
 }					t_event;
 
 
+void				print_menu(t_mlx *mlx);
+void				set_hook(t_mlx *mlx, t_map *map);
 int					read_input(int fd,t_map *map, t_batisa **coord);
 int 				ft_is_digit(char s, int base);
 int 				ft_is_space(int c);
@@ -115,6 +119,6 @@ void				flatten(int key, t_mlx *mlx);
 void				change_projection(int key, t_mlx *mlx);
 double 				ratio(int z_min, int z_max, int z);
 int 				set_default_clr(int z, t_map *map);
-int					set_clr(t_point cur, t_point ps, t_point pe);
+int					set_clr(int cury, int curx, t_point cur, t_point ps, t_point pe);
 
 #endif

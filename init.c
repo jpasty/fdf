@@ -19,8 +19,8 @@ t_cam		*cam_init(t_map *map)
 
 	if(!(cam = (t_cam *)ft_memalloc(sizeof(t_cam))))
 		return (NULL);
-	cam->zoom = ft_min((WIDTH - MENU_WIDTH) / (map->width * 2),
-					   HEIGHT / (map->height * 2));
+	cam->zoom = ft_min((WIDTH - MENU_WIDTH) / map->width / 2,
+					   HEIGHT / map->height / 2 );
 	cam->alpha = 0;
 	cam->beta = 0;
 	cam->gamma = 0;
@@ -39,7 +39,7 @@ t_mlx		*mlx_data(t_map *map)
 		return (NULL);
 	if (!(mlx->mlx_ptr = mlx_init()))
 		return (NULL);
-	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "mlx")))
+	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "Fdf")))
 		return (NULL);
 	if (!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT)))
 		return (NULL);

@@ -52,6 +52,6 @@ t_point		projection(t_point p, t_mlx *mlx, t_map *map)
 	if (!mlx->cam->projection)
 		set_iso_projection(&p.x, &p.y, p.z);
 	p.x += (WIDTH - MENU_WIDTH) / 2 + mlx->cam->x_offset + MENU_WIDTH;
-	p.y += (HEIGHT + map->height * mlx->cam->zoom) / 3 + mlx->cam->y_offset;
+	p.y += (HEIGHT + map->height * mlx->cam->zoom) / 2 + mlx->cam->y_offset;
 	return (p);
 }

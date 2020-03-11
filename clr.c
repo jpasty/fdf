@@ -1,5 +1,4 @@
 #include "fdf.h"
-
 int 		set_default_clr(int z, t_map *map)
 {
 	double percent;
@@ -22,7 +21,7 @@ int	get_light(int start, int end, double percentage)
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-int	set_clr(t_point cur, t_point ps, t_point pe)
+int	set_clr(int cury, int curx, t_point cur, t_point ps, t_point pe)
 {
 	int		red;
 	int		green;
@@ -35,9 +34,9 @@ int	set_clr(t_point cur, t_point ps, t_point pe)
 	if (cur.clr == pe.clr)
 		return (cur.clr);
 	if (d.x > d.y)
-		percentage = ratio(ps.x, pe.x, cur.x);
+		percentage = ratio(ps.x, pe.x, curx);
 	else
-		percentage = ratio(ps.y, pe.y, cur.y);
+		percentage = ratio(ps.y, pe.y, cury);
 	red = get_light((ps.clr >> 16) & 0xFF,
 					(pe.clr >> 16) & 0xFF,
 					percentage);
