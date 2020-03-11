@@ -122,5 +122,6 @@ void				change_projection(int key, t_mlx *mlx);
 double 				ratio(int z_min, int z_max, int z);
 int 				set_default_clr(int z, t_map *map);
 int					set_clr(int cury, int curx, t_point cur, t_point ps, t_point pe);
+int 				closed(void *param);
 
 #endif

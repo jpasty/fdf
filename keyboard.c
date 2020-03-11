@@ -89,7 +89,7 @@ void	set_hook(t_mlx *mlx, t_map *map)
 {
 	mlx->map = map;
 	mlx_hook(mlx->win_ptr, 2, 0, key_press, mlx);
-//	mlx_hook(mlx->win_ptr, 17, 0, close, mlx);
+	mlx_hook(mlx->win_ptr, 17, 0, closed, mlx);
 	mlx_hook(mlx->win_ptr, 4, 0, mouse_press, mlx);
 	mlx_hook(mlx->win_ptr, 5, 0, mouse_release, mlx);
 	mlx_hook(mlx->win_ptr, 6, 0, mouse_move, mlx);

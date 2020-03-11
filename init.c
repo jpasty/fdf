@@ -1,5 +1,11 @@
 #include "fdf.h"
 
+int		closed(void *param)
+{
+	(void)param;
+	exit(0);
+}
+
 t_map 		*map_init()
 {
 	t_map 	*map;
@@ -37,12 +43,12 @@ t_mlx		*mlx_data(t_map *map)
 	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))))
 		ft_errno(ENOMEM, "t_mlx allocation error");
 	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))) ||
+		!(mlx->mouse = (t_mouse *)malloc(sizeof(t_mouse))) ||
 		!(mlx->mlx_ptr = mlx_init()) ||
 		!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "Fdf")) ||
 		!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT)) ||
-		!(mlx->data_ptr =
-				mlx_get_data_addr(mlx->img_ptr, &(mlx->bits_per_pixel),
-						&(mlx->size_line), &(mlx->endian))))
+		!(mlx->data_ptr = mlx_get_data_addr(mlx->img_ptr,
+				&(mlx->bits_per_pixel), &(mlx->size_line), &(mlx->endian))))
 		ft_errno(0, NULL);
 	mlx->cam = cam_init(map);
 	return (mlx);
