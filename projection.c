@@ -5,7 +5,7 @@ void		rotate_x(int *y, int *z, double alpha)
 	int 	prev_y;
 
 	prev_y = *y;
-	*y = prev_y * cos(alpha) + *z * sin(alpha);
+	*y = prev_y * cos(alpha) - *z * sin(alpha);
 	*z = prev_y * sin(alpha) + *z * cos(alpha);
 }
 
@@ -14,7 +14,7 @@ void		rotate_y(int *x, int *z, double betta)
 	int 	prev_x;
 
 	prev_x = *x;
-	*x = prev_x * cos(betta) + *z * sin(betta);
+	*x = prev_x * cos(betta) - *z * sin(betta);
 	*z = prev_x * sin(betta) + *z * cos(betta);
 }
 
@@ -25,7 +25,7 @@ void		rotate_z(int *x, int *y, double gamma)
 
 	prev_x = *x;
 	prev_y = *y;
-	*x = prev_x * cos(gamma) + prev_y * sin(gamma);
+	*x = prev_x * cos(gamma) - prev_y * sin(gamma);
 	*y = prev_x * sin(gamma) + prev_y * cos(gamma);
 }
 

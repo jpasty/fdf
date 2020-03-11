@@ -65,6 +65,7 @@ typedef struct 		s_mlx
 	int				size_line;
 	int				endian;
 	t_cam			*cam;
+	t_map			*map;
 }					t_mlx;
 
 typedef struct 		s_draw
@@ -107,10 +108,13 @@ t_mlx 				*mlx_data(t_map *map);
 void				line_init(t_draw *line, t_point *p1, t_point *p2);
 void				draw(t_map *map, t_mlx *mlx);
 t_point 			projection(t_point p, t_mlx *mlx, t_map *map);
-void				zoom(int key, t_mlx *mlx, t_map *map);
-void				move(int key, t_mlx *mlx, t_map *map);
-void				rotate(int key, t_mlx *mlx, t_map *map);
-void				flatten(int key, t_mlx *mlx, t_map *map);
-void				change_projection(int key, t_mlx *mlx, t_map *map);
+void				zoom(int key, t_mlx *mlx);
+void				move(int key, t_mlx *mlx);
+void				rotate(int key, t_mlx *mlx);
+void				flatten(int key, t_mlx *mlx);
+void				change_projection(int key, t_mlx *mlx);
+double 				ratio(int z_min, int z_max, int z);
+int 				set_default_clr(int z, t_map *map);
+int					set_clr(t_point cur, t_point ps, t_point pe);
 
 #endif
