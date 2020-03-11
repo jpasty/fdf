@@ -5,7 +5,7 @@ t_map 		*map_init()
 	t_map 	*map;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		return (NULL);
+		ft_errno(ENOMEM, "t_map allocation error");
 	map->clr_arr = NULL;
 	map->height = 0;
 	map->width = 0;
@@ -17,8 +17,7 @@ t_cam		*cam_init(t_map *map)
 {
 	t_cam	*cam;
 
-	if(!(cam = (t_cam *)ft_memalloc(sizeof(t_cam))))
-		return (NULL);
+	cam = (t_cam *)ft_memalloc(sizeof(t_cam));
 	cam->zoom = ft_min((WIDTH - MENU_WIDTH) / map->width / 2,
 					   HEIGHT / map->height / 2 );
 	cam->alpha = 0;
@@ -36,17 +35,15 @@ t_mlx		*mlx_data(t_map *map)
 	t_mlx	*mlx;
 
 	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))))
-		return (NULL);
-	if (!(mlx->mlx_ptr = mlx_init()))
-		return (NULL);
-	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "Fdf")))
-		return (NULL);
-	if (!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT)))
-		return (NULL);
-	mlx->data_ptr = mlx_get_data_addr(mlx->img_ptr, &(mlx->bits_per_pixel),
-			&(mlx->size_line), &(mlx->endian));
-	if (!mlx->data_ptr)
-		return (NULL);
+		ft_errno(ENOMEM, "t_mlx allocation error");
+	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))) ||
+		!(mlx->mlx_ptr = mlx_init()) ||
+		!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "Fdf")) ||
+		!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT)) ||
+		!(mlx->data_ptr =
+				mlx_get_data_addr(mlx->img_ptr, &(mlx->bits_per_pixel),
+						&(mlx->size_line), &(mlx->endian))))
+		ft_errno(0, NULL);
 	mlx->cam = cam_init(map);
 	return (mlx);
 }

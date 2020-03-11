@@ -9,7 +9,7 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "controls.h"
-#include "stdio.h"
+# include "stdio.h"
 
 #define  DEF_COLOR	"0xFECA99"
 # define HEIGHT			1080
@@ -89,11 +89,6 @@ typedef struct		s_point
 	int 			z;
 	int				clr;
 }					t_point;
-
-typedef struct		s_event
-{
-
-}					t_event;
 
 
 void				print_menu(t_mlx *mlx);

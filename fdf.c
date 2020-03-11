@@ -9,10 +9,9 @@ int 			main(int ac, char **av)
 	t_mlx		*mlx;
 
 	coord = NULL;
-	if (!(map = map_init()))
-		return (0);
-	if (!(read_input(open(av[1], O_RDONLY), map, &coord)))
-		return (0);
+
+	map = map_init();
+	read_input(open(av[1], O_RDONLY), map, &coord);
 	coord_to_arr(&coord, map);
 	mlx = mlx_data(map);
 	draw(map, mlx);
