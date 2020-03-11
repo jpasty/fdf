@@ -1,31 +1,14 @@
 #include "fdf.h"
 
-double 		ratio(int z_min, int z_max, int z)
+double 		ratio(int start, int end, int curr)
 {
 	double	position;
 	double	length;
 
-	position = z - z_min;
-	length = z_max - z_min;
+	position = curr - start;
+	length = end - start;
 
 	return (length == 0) ? 1.0 : (position / length);
-}
-
-int 		set_default_clr(int z, t_map *map)
-{
-	double percent;
-
-	percent = ratio(map->z_min, map->z_max, z);
-	if (percent < 0.2)
-		return (COLOR_DISCO);
-	else if (percent < 0.4)
-		return (COLOR_BRICK_RED);
-	else if (percent < 0.6)
-		return (COLOR_FLAMINGO);
-	else if (percent < 0.8)
-		return (COLOR_JAFFA);
-	else
-		return (COLOR_SAFFRON);
 }
 
 t_point		get_point(int x, int y, t_map *map)

@@ -16,7 +16,9 @@ static void	pixel_put(t_mlx *mlx, int x, int y, int color)
 static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 {
 	int 	y;
+	t_point	strt;
 
+	ft_memcpy(&strt, &p1, sizeof(t_point));
 	y = p1.y;
 	line.delta = abs(line.rise) * 2;
 	line.threshold = abs(line.run);
@@ -28,7 +30,7 @@ static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 	}
 	while (p1.x != p2.x + 1)
 	{
-		pixel_put(mlx, p1.x++, y, p1.clr);
+		pixel_put(mlx, p1.x++, y, set_clr(p1, strt, p2));
 		line.offset += line.delta;
 		if (line.offset >= line.threshold)
 		{
@@ -37,10 +39,13 @@ static void	run_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 		}
 	}
 }
+
 static void	rise_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 {
 	int 	x;
+	t_point	strt;
 
+	ft_memcpy(&strt, &p1, sizeof(t_point));
 	x = p1.x;
 	line.delta = abs(line.run) * 2;
 	line.threshold = abs(line.rise);
@@ -52,7 +57,7 @@ static void	rise_is_gather(t_draw line, t_point p1, t_point p2, t_mlx *mlx)
 	}
 	while (p1.y != p2.y + 1)
 	{
-		pixel_put(mlx, x, p1.y++, p1.clr);
+		pixel_put(mlx, x, p1.y++, set_clr(p1, strt, p2)); //разберись с градиентом
 		line.offset += line.delta;
 		if (line.offset >= line.threshold)
 		{
