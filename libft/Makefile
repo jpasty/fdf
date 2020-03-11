@@ -6,7 +6,7 @@
 #    By: jpasty <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/07 16:45:56 by jpasty            #+#    #+#              #
-#    Updated: 2020/03/09 14:47:11 by jpasty           ###   ########.fr        #
+#    Updated: 2020/03/11 22:19:38 by cshinoha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	   ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	   ft_tolower.c ft_toupper.c ft_striter.c ft_striteri.c ft_strjoin.c \
 	   ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c \
-	   ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_swap.c ft_min.c
+	   ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_swap.c ft_min.c ft_error.c
 OBJC = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 	   ft_isdigit.o ft_isprint.o ft_itoa.o ft_lstadd.o ft_lstdel.o \
 	   ft_lstdelone.o ft_lstiter.o ft_lstmap.o ft_lstnew.o ft_memalloc.o \
@@ -34,7 +34,7 @@ OBJC = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 	   ft_strrchr.o ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o \
 	   ft_tolower.o ft_toupper.o ft_striter.o ft_striteri.o ft_strjoin.o \
 	   ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o \
-	   ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_swap.o ft_min.o
+	   ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_swap.o ft_min.o ft_error.o
 FLAGS = -Wall -Wextra -Werror -c
 HEAD = -I libft.h
 

@@ -6,7 +6,7 @@
 /*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:26:54 by jpasty            #+#    #+#             */
-/*   Updated: 2019/04/24 20:02:21 by jpasty           ###   ########.fr       */
+/*   Updated: 2020/03/11 22:19:38 by cshinoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 
 	if (lst != NULL)
 	{
-		if (!(new = (t_list *)malloc(sizeof(f(lst)))))
+		if (!(new = (t_list *)malloc(sizeof(t_list *))))
 			return (NULL);
 		new = f(lst);
 		new->next = ft_lstmap(lst->next, f);

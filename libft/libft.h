@@ -6,7 +6,7 @@
 /*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 18:45:48 by jpasty            #+#    #+#             */
-/*   Updated: 2019/04/24 19:55:55 by jpasty           ###   ########.fr       */
+/*   Updated: 2020/03/11 22:19:38 by cshinoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/errno.h>
+# include "stdio.h"
 
 typedef struct		s_list
 {
@@ -24,6 +26,10 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void				ft_error_fd(int fd, char *mes, int code);
+void				ft_error(char *mes, int code);
+void				ft_errno_fd(int fd, char err, char *mes);;
+void				ft_errno(char err, char *mes);
 void				*ft_memset(void *d, int c, size_t len);
 void				ft_bzero(void *s, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
