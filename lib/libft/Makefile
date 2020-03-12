@@ -15,7 +15,7 @@ NAME 	:= libft.a
 FLAGS 	:= -Wextra -Werror -Wall
 CC 		:= gcc
 REMOVE 	:= /bin/rm -rf
-DIR_INCLUDE := include/
+DIR_INCLUDE := ./include/
 LIBFT	:= libft.h
 DIR_BIN := bin/
 

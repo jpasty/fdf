@@ -45,7 +45,7 @@ REMOVE		:= rm -rf
 MAKE_LIBFT	:= make -C $(DIR_LIBFT)
 MAKE_MLX	:= make -C $(DIR_MLX)
 
-vpath %.c $(DIR_SRCS) $(DIR_LINAL)
+vpath %.c $(DIR_SRCS)
 vpath %.o $(DIR_OBJS)
 vpath %.h $(DIRS_INCLUDE)
 vpath %.a $(DIR_LIBFT) $(DIR_MLX)
