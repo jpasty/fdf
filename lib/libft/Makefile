@@ -31,7 +31,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	   ft_tolower.c ft_toupper.c ft_striter.c ft_striteri.c ft_strjoin.c \
 	   ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c \
 	   ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_swap.c ft_min.c \
-	   ft_error.c get_next_line.c
+	   ft_error.c get_next_line.c ft_free_strsplit.c
 
 OBJ := $(SRC:.c=.o)
 

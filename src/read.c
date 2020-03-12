@@ -42,12 +42,14 @@ static t_batisa	*get_new_coord(char *s)
 
 	if (!(new_coord = (t_batisa *)malloc(sizeof(t_batisa))))
 		ft_errno(ENOMEM, "t_batisa allocation error");
-	div = ft_strsplit(s, ',');
+	if (!(div = ft_strsplit(s, ',')))
+		ft_errno(ENOMEM, "Read file error");
 	if (!ft_is_num(div[0], 10))
 		ft_error("Not a valid map", -1);
 	new_coord->z = ft_atoi(div[0]);
 	new_coord->clr = div[1] ? ft_atoi_base(div[1], 16) : -1;
 	new_coord->next = NULL;
+	ft_free_strsplit(div);
 	return (new_coord);
 }
 
@@ -82,7 +84,7 @@ int				read_input(int fd, t_map *map, t_batisa **coord)
 		if (!check_input(split, map, coord))
 			ft_error("Wrong map", -1);
 		map->height++;
-		free(split);
+		ft_free_strsplit(split);
 		free(line);
 	}
 	if (res == -1)

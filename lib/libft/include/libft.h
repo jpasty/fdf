@@ -19,7 +19,6 @@
 # include <unistd.h>
 # include <sys/errno.h>
 # include <sys/types.h>
-# include <sys/uio.h>
 # include <stdio.h>
 
 # define BUFF_SIZE	1024
@@ -34,7 +33,7 @@ typedef struct		s_list
 
 void				ft_error_fd(int fd, char *mes, int code);
 void				ft_error(char *mes, int code);
-void				ft_errno_fd(int fd, char err, char *mes);;
+void				ft_errno_fd(int fd, char err, char *mes);
 void				ft_errno(char err, char *mes);
 void				*ft_memset(void *d, int c, size_t len);
 void				ft_bzero(void *s, size_t len);
@@ -95,7 +94,8 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int 				ft_min(int a, int b);
-int 				get_next_line(int fd, char **line);
+int					ft_min(int a, int b);
+int					get_next_line(int fd, char **line);
+void				ft_free_strsplit(char **split);
 
 #endif

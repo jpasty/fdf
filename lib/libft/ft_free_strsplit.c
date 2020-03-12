@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_free_strsplit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpasty <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 22:29:18 by jpasty            #+#    #+#             */
-/*   Updated: 2020/03/11 22:29:23 by jpasty           ###   ########.fr       */
+/*   Created: 2020/03/12 14:10:48 by jpasty            #+#    #+#             */
+/*   Updated: 2020/03/12 14:10:50 by jpasty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int				main(int ac, char **av)
+void	ft_free_strsplit(char **split)
 {
-	t_batisa	*coord;
-	t_map		*map;
-	t_mlx		*mlx;
+	size_t i;
 
-	if (ac != 2)
-		ft_errno(E2BIG, "Invalid number of arguments");
-	coord = NULL;
-	map = map_init();
-	read_input(open(av[1], O_RDONLY), map, &coord);
-	coord_to_arr(&coord, map);
-	mlx = mlx_data(map);
-	draw(map, mlx);
-	set_hook(mlx, map);
-	mlx_loop(mlx->mlx_ptr);
-	return (0);
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }
